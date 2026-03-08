@@ -38,6 +38,6 @@ The proposed Gerchberg–Saxton initialization consistently outperforms random p
 ```
 D2NN/
 ├── code/       # Simulation, training, and analysis scripts
-└── results/     # Presentation materials and figures
+└── results/    # Presentation materials and figures
 └── articles/   # Library of materials
 ```
