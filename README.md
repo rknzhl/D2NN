@@ -1,7 +1,7 @@
 # D2NN — Diffractive Deep Neural Network
 
 > **Optical implementation of a deep neural network via phase-modulating diffractive layers**  
-> *Rodion Akinzhala*
+> *Rodion Akinzhala, Ibragimova Ksenia*
 
 ---
 
@@ -38,5 +38,6 @@ The proposed Gerchberg–Saxton initialization consistently outperforms random p
 ```
 D2NN/
 ├── code/       # Simulation, training, and analysis scripts
-└── slides/     # Presentation materials and figures
+└── results/     # Presentation materials and figures
+└── articles/   # Library of materials
 ```
