@@ -1,43 +1,22 @@
 # D2NN — Diffractive Deep Neural Network
 
-> **Optical implementation of a deep neural network via phase-modulating diffractive layers**  
-> *Rodion Akinzhala, Ibragimova Ksenia*
+Numerical simulation of a diffractive neural network with trainable phase masks.
+The notebook includes MNIST classification, Gerchberg–Saxton initialization,
+and experiments on sensitivity to wavelength changes and phase noise.
 
----
+Authors: Rodion Akinzhala, Kseniia Ibragimova.
 
-## Overview
+**[Main presentation (English, PDF)](docs/d2nn_presentation_eng.pdf)**
 
-**D2NN** (Diffractive Deep Neural Network) is an all-optical computing architecture in which learned parameters are encoded as **phase profiles** on physical diffractive masks. Free-space wave propagation between masks performs the nonlinear field transformation, enabling inference at the speed of light with no electronic computation at test time.
+## Contents
 
-The forward pass through $N$ layers is:
+- [Notebook](code/D2NN.ipynb) — simulation, training and experiments.
+- [Project article (Russian, PDF)](docs/D2NN_VPV_article.pdf).
+- [Earlier presentation (Russian, PDF)](docs/D2NN_slides.pdf).
 
-$$A_{\text{out}} = \mathcal{P}_{d_N} \circ e^{i\varphi_N} \circ \mathcal{P}_{d_{N-1}} \circ \cdots \circ e^{i\varphi_1} \circ \mathcal{P}_{d_0} \[{A_{\text{in}}\} ]$$
+## Using the notebook
 
-where $P_d$ denotes free-space Angular Spectrum Propagation over distance $d$, and $e^{i\varphi_m}$ is the phase modulation at layer $m$. The classifier reads the output intensity $I(x,y) = |A_{\text{out}}(x,y)|^2$ at a segmented detector plane.
-
-**Trainable parameters:** phase profiles $\{\varphi_1, \ldots, \varphi_N\}$  
-**Fixed parameters:** inter-layer distances $\{d_1, \ldots, d_{N-1}\}$
-
----
-
-## Contributions
-
-- **Novel Gerchberg–Saxton initialization.** A modified Gerchberg–Saxton algorithm is developed to produce physically structured initial phase masks, replacing the standard $\mathcal{U}[-\pi,\pi]$ random initialization. The procedure minimizes $\|{|B^{(k)}|} - |A_{\text{out}}|\|_2^2$ via alternating projections onto constraint sets and is proven to converge monotonically. This yields faster training convergence and higher final accuracy compared to random initialization.
-
-- **Robustness characterization.** Systematic evaluation of model sensitivity to (i) source wavelength variation and (ii) proportional Gaussian phase noise $\delta \sim \mathcal{N}(0,\, \alpha^2\varphi^2)$, establishing practical tolerances.
-
-
-## Results
-
-The proposed Gerchberg–Saxton initialization consistently outperforms random phase initialization in both convergence speed and final classification accuracy. Robustness experiments show that the trained model retains accuracy above 80% under source wavelength deviations of up to ±2%, confirming tolerance to realistic spectral fluctuations. Under proportional Gaussian phase noise, accuracy degrades monotonically with noise level $\alpha$ and remains robust in the low-noise regime, establishing practical fabrication tolerances for physical implementation.
-
----
-
-## Repository Structure
-
-```
-D2NN/
-├── code/       # Simulation, training, and analysis scripts
-└── results/    # Presentation materials and figures
-└── articles/   # Library of materials
-```
+Open `code/D2NN.ipynb` in Jupyter or a compatible notebook environment.
+It uses TensorFlow/Keras and includes installation cells for `cvnn` and `tf-keras`.
+MNIST is downloaded through `tensorflow-datasets`. Some optional logo examples
+require external images from Kaggle.
